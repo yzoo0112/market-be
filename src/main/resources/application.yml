@@ -21,5 +21,5 @@ spring:
       max-file-size: 1000MB       # 단일 파일 최대 크기
       max-request-size: 1000MB    # 전체 요청 최대 크기
 
-  server:
-    port: ${PORT:8080}
+server:
+  port: ${PORT:8080}
