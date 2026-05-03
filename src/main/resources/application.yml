@@ -3,9 +3,9 @@ spring:
     name: market_be
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${RDS_DB_URL}
+    username: ${RDS_DB_USERNAME}
+    password: ${RDS_DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
