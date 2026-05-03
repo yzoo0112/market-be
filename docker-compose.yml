@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  market_be:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: market_be
+    ports:
+      - "8080:8080"
+    environment:
+      # AWS RDS 엔드포인트와 생성하신 DB 정보를 아래에 입력해주세요.
+      # 예시: jdbc:mysql://database-1.xxxx.ap-northeast-2.rds.amazonaws.com:3306/marketdb?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: ${RDS_DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${RDS_DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${RDS_DB_PASSWORD}
+      TZ: Asia/Seoul
+    restart: always
