@@ -117,5 +117,12 @@ public class LoginController {
         boolean exists = appUserRepository.existsByNickname(nickname);
         return ResponseEntity.ok(exists);
     }
-
+ 
+    @GetMapping("/signup/pcheck")
+    public ResponseEntity<?> checkDuplicatePhone(@RequestParam String phoneNum) {
+        boolean exists = appUserRepository.existsByPhoneNum(phoneNum);
+        return ResponseEntity.ok(exists);
+    }
+ 
 }
+
