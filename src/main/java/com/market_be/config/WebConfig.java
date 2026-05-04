@@ -15,7 +15,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                  .allowedOriginPatterns("http://localhost:5173", "https://*.vercel.app")
                  .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                  .allowedHeaders("*")
+                 .exposedHeaders("Authorization")
                  .allowCredentials(true);
+
      }
  
      @Override
