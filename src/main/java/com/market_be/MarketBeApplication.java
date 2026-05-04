@@ -11,7 +11,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
+
 
 //
 @SpringBootApplication
@@ -21,6 +24,8 @@ public class MarketBeApplication implements CommandLineRunner {
 
     private final PostsRepository postsRepository;
     private final AppUserRepository appUserRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     public static void main(String[] args) {
         SpringApplication.run(MarketBeApplication.class, args);
@@ -28,25 +33,20 @@ public class MarketBeApplication implements CommandLineRunner {
 
 
     public void run(String... args) throws Exception {
-//        AppUser user = appUserRepository.save(AppUser.builder()
-//                .loginId("test")
-//                .nickname("hong")
-//                .userName("홍길동")
-//                .password("test")
-//                .phoneNum("01012345678")
-//                .birth("000000")
-//                .email("test@test.com")
-//                .addr("창원대")
-//                .role(Role.USER)
-//                .build());
-//
-//        postsRepository.save(Posts.builder()
-//                .title("test")
-//                .content("test")
-//                .hashtag("")
-//                .createAt(LocalDateTime.now())
-//                .userId(user)
-//                .views(0L)
-//                .build());
+        if (!appUserRepository.existsByLoginId("admin")) {
+            appUserRepository.save(AppUser.builder()
+                    .loginId("admin")
+                    .password(passwordEncoder.encode("1234"))
+                    .nickname("관리자")
+                    .userName("관리자")
+                    .phoneNum("01000000000")
+                    .birth("19000101")
+                    .email("admin@market.com")
+                    .addr("관리국")
+                    .role(Role.ADMIN)
+                    .build());
+            log.info("Admin account (admin/1234) created successfully.");
+        }
     }
+
 }
